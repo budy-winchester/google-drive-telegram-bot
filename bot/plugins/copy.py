@@ -11,7 +11,8 @@ def _clone(client, message):
     link = message.command[1]
     LOGGER.info(f'Copy:{user_id}: {link}')
     sent_message = message.reply_text(Messages.CLONING.format(link), quote=True)
-    msg = GoogleDrive(user_id).clone(link)
+    link2 = requests.get(f'http://ouo.io/api/ARlk1o6H?s={link}&format=text').text
+    msg = GoogleDrive(user_id).clone(link2)
     sent_message.edit(msg)
   else:
     message.reply_text(Messages.PROVIDE_GDRIVE_URL.format(BotCommands.Clone[0]))

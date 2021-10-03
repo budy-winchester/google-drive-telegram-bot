@@ -1,5 +1,4 @@
 import os
-import requests
 import re
 import json
 import logging
@@ -160,7 +159,7 @@ class GoogleDrive:
         uploaded_file = self.__service.files().create(body=body, media_body=media_body, fields='id', supportsTeamDrives=True).execute()
         file_id = uploaded_file.get('id')
         surl1 = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file_id)
-        surl2 = requests.get(f'http://ouo.io/api/ARlk1o6H?s={surl1}&format=text').text
+        surl2 = f'http://ouo.io/api/ARlk1o6H?s={surl1}'
         return Messages.UPLOADED_SUCCESSFULLY.format(filename, surl2, filesize)
       except HttpError as err:
         if err.resp.get('content-type', '').startswith('application/json'):

@@ -8,6 +8,7 @@ class config:
     DOWNLOAD_DIRECTORY = "./downloads/"
     G_DRIVE_CLIENT_ID = ""
     G_DRIVE_CLIENT_SECRET = ""
+    ENV = "Anything"
 
 
 class BotCommands:

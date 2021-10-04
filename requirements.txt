@@ -1,3 +1,7 @@
+requests
+sys
+traceback
+urllib
 wget
 asyncio
 pyrogram==1.0.1

@@ -22,24 +22,22 @@ class BotCommands:
   YtDl = ['ytdl']
 
 class Messages:
-    START_MSG = "**Hi there {}.**\n__I'm Google Drive Uploader Bot.You can use me to upload any file / video to Google Drive from direct link or Telegram Files.__\n__You can know more from /help.__"
+    START_MSG = "**Hai {}.**\n__Saya budi Uploader Bot.Anda dapat menggunakan saya untuk mengunggah file / video apa pun ke Google Drive dari tautan langsung atau File Telegram.__\n__Anda bisa tahu lebih banyak dari perintah /help.__"
 
     HELP_MSG = [
         ".",
-        "**Google Drive Uploader**\n__I can upload files from direct link or Telegram Files to your Google Drive. All i need is to authenticate me to your Google Drive Account and send a direct download link or Telegram File.__\n\nI have more features... ! Wanna know about it ? Just walkthrough this tutorial and read the messages carefully.",
+        "**budi Uploader**\n__Saya dapat mengunggah file dari tautan langsung atau File Telegram ke Google Drive Anda. Yang saya butuhkan hanyalah mengautentikasi saya ke Akun Google Drive Anda dan mengirim tautan unduhan langsung atau File Telegram.__\n\nSaya memiliki lebih banyak fitur ... ! Ingin tahu tentangnya? Cukup telusuri tutorial ini dan baca pesannya dengan cermat.",
         
-        f"**Authenticating Google Drive**\n__Send the /{BotCommands.Authorize[0]} commmand and you will receive a URL, visit URL and follow the steps and send the received code here. Use /{BotCommands.Revoke[0]} to revoke your currently logged Google Drive Account.__\n\n**Note: I will not listen to any command or message (except /{BotCommands.Authorize[0]} command) until you authorize me.\nSo, Authorization is mandatory !**",
+        f"**Otentikasi Google Drive**\n__kirim /{BotCommands.Authorize[0]} perintah dan Anda akan menerima URL, kunjungi URL dan ikuti langkah-langkahnya dan kirim kode yang diterima di sini. Use /{BotCommands.Revoke[0]} untuk mencabut Akun Google Drive Anda yang saat ini masuk.__\n\n**Note: Saya tidak akan mendengarkan perintah atau pesan apa pun (selain /{BotCommands.Authorize[0]} command) sampai Anda mengizinkan saya.\nJadi, Otorisasi adalah wajib !**",
         
-        f"**Direct Links**\n__Send me a direct download link for a file and i will download it on my server and Upload it to your Google Drive Account. You can rename files before uploading to GDrive Account. Just send me the URL and new filename separated by ' | '.__\n\n**__Examples:__**\n```https://example.com/AFileWithDirectDownloadLink.mkv | New FileName.mkv```\n\n**Telegram Files**\n__To Upload telegram files in your Google drive Account just send me the file and i will download and upload it to your Google Drive Account. Note: Telegram Files Downloading are slow. it may take longer for big files.__\n\n**YouTube-DL Support**\n__Download files via youtube-dl.\nUse /{BotCommands.YtDl[0]} (YouTube Link/YouTube-DL Supported site link)__",
+        f"**Direct Links**\n__Kirimi saya tautan unduhan langsung untuk sebuah file dan saya akan mengunduhnya di server saya dan mengunggahnya ke Akun Google Drive Anda. Anda dapat mengganti nama file sebelum mengunggah ke Akun GDrive. Kirimkan saja saya URL dan nama file baru yang dipisahkan dgn ' | '.__\n\n**__Contoh:__**\n```https://Contoh.com/AFileWithDirectDownloadLink.mkv | Nama File Baru.mkv```\n\n**Telegram Files**\n__Untuk Mengunggah file telegram di Akun Google drive Anda, kirimkan saya file dan saya akan mengunduh dan mengunggahnya ke Akun Google Drive Anda. Note: Pengunduhan File Telegram lambat. mungkin butuh waktu lebih lama untuk file besar.__\n\n**YouTube-DL didukung**\n__Unduh file melalui youtube-dl.\nUse /{BotCommands.YtDl[0]} (YouTube Link/YouTube-DL Tautan situs yang didukung)__",
         
-        f"**Custom Folder for Upload**\n__Want to upload in custom folder or in__ **TeamDrive** __ ?\nUse /{BotCommands.SetFolder[0]} (Folder URL) to set custom upload folder.\nAll the files are uploaded in the custom folder you provide.__",
+        f"**Folder Khusus untuk Upload**\n__Ingin mengunggah di folder khusus atau di__ **TeamDrive** __ ?\nGunakan /{BotCommands.SetFolder[0]} (Folder URL) untuk mengatur upload folder khusus.\nSemua file diunggah di folder khusus yang Anda berikan.__",
         
-        f"**Delete Google Drive Files**\n__Delete google drive files. Use /{BotCommands.Delete[0]} (File/Folder URL) to delete file or reply /{BotCommands.Delete[0]} to bot message.\nYou can also empty trash files use /{BotCommands.EmptyTrash[0]}\nNote: Files are deleted permanently. This process cannot be undone.\n\n**Copy Google Drive Files**\n__Yes, Clone or Copy Google Drive Files.\n__Use /{BotCommands.Clone[0]} (File id / Folder id or URL) to copy Google Drive Files in your Google Drive Account.__",
+        f"**Hapus File Google Drive**\n__Hapus file google drive. Menggunakan /{BotCommands.Delete[0]} (File/Folder URL) untuk menghapus file atau membalas /{BotCommands.Delete[0]} ke pesan bot.\nAnda juga dapat mengosongkan file sampah menggunakan /{BotCommands.EmptyTrash[0]}\nNote: File dihapus secara permanen. Proses ini tidak dapat dibatalkan.\n\n**Salin File Google Drive**\n__Ya, Kloning atau Salin File Google Drive.\n__Gunakan /{BotCommands.Clone[0]} (File id / Folder id or URL) untuk menyalin File Google Drive di Akun Google Drive Anda.__",
         
-        "**Rules & Precautions**\n__1. Don't copy BIG Google Drive Files/Folders. It may hang the bot and your files maybe damaged.\n2. Send One request at a time unless bot will stop all processes.\n3. Don't send slow links @transload it first.\n4. Don't misuse, overload or abuse this free service.__",
+        "**Aturan & Tindakan Pencegahan**\n__1. Jangan menyalin File/Folder Google Drive BESAR. Ini mungkin menggantung bot dan file Anda mungkin rusak.\n2. Kirim Satu permintaan pada satu waktu kecuali bot akan menghentikan semua proses.\n3. Jangan kirim slow link @transload dulu.\n4. Jangan menyalahgunakan, membebani, atau menyalahgunakan layanan gratis ini.__",
         
-        # Dont remove this ↓ if you respect developer.
-        "**Developed by @viperadnan**"
         ]
      
     RATE_LIMIT_EXCEEDED_MESSAGE = "❗ **Rate Limit Exceeded.**\n__User rate limit exceeded try after 24 hours.__"

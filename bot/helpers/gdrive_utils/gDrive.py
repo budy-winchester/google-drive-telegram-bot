@@ -2,6 +2,7 @@ import os
 import re
 import json
 import logging
+import requests
 from bot import LOGGER
 from time import sleep
 from tenacity import *
@@ -158,7 +159,9 @@ class GoogleDrive:
       try:
         uploaded_file = self.__service.files().create(body=body, media_body=media_body, fields='id', supportsTeamDrives=True).execute()
         file_id = uploaded_file.get('id')
-        return Messages.UPLOADED_SUCCESSFULLY.format(filename, self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file_id), filesize)
+        URL = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file_id)
+        res = requests.get(URL).text
+        return Messages.UPLOADED_SUCCESSFULLY.format(filename, res, filesize)
       except HttpError as err:
         if err.resp.get('content-type', '').startswith('application/json'):
           reason = json.loads(err.content).get('error').get('errors')[0].get('reason')

@@ -26,10 +26,10 @@ logging.getLogger('oauth2client.client').setLevel(logging.ERROR)
 
 
 class GoogleDrive:
-  def shorten(self, url_long):
+  def shorten(url_long):
     try:
       URL = "http://ouo.io/api/ARlk1o6H?s"
-      url = self.URL + "=" \
+      url = URL + "=" \
           + urllib.parse.urlencode({"url": url_long})
       res = requests.get(url).text
     except Exception as e:

@@ -1,5 +1,4 @@
 requests
-sys
 traceback
 urllib
 wget

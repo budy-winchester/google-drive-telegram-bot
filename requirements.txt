@@ -10,6 +10,7 @@ pySmartDL
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
+requests
 youtube_dl
 ffmpeg
 tenacity

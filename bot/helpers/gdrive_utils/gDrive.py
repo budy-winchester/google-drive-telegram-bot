@@ -1,4 +1,8 @@
 import os
+import requests
+import sys
+import traceback
+import urllib
 import re
 import json
 import logging
@@ -22,10 +26,19 @@ logging.getLogger('oauth2client.client').setLevel(logging.ERROR)
 
 
 class GoogleDrive:
+  def shorten(self, url_long):
+    try:
+      URL = "http://ouo.io/api/ARlk1o6H?s"
+      url = self.URL + "=" \
+          + urllib.parse.urlencode({"url": url_long})
+      res = requests.get(url).text
+    except Exception as e:
+      raise
+      
   def __init__(self, user_id):
     self.__G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
-    self.__G_DRIVE_BASE_DOWNLOAD_URL = "http://ouo.io/api/ARlk1o6H?s=https://drive.google.com/uc?id={}&export=download"
-    self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL = "http://ouo.io/api/ARlk1o6H?s=https://drive.google.com/drive/folders/{}"
+    self.__G_DRIVE_BASE_DOWNLOAD_URL = "https://drive.google.com/uc?id={}&export=download"
+    self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL = "https://drive.google.com/drive/folders/{}"
     self.__service = self.authorize(gDriveDB.search(user_id))
     self.__parent_id = idsDB.search_parent(user_id)
 
@@ -150,7 +163,7 @@ class GoogleDrive:
       filesize = humanbytes(os.path.getsize(file_path))
       body = {
           "name": filename,
-          "description": "Uploaded using @budyrangerdark",
+          "description": "Uploaded using @UploadGdriveBot",
           "mimeType": mime_type,
       }
       body["parents"] = [self.__parent_id]
@@ -158,7 +171,8 @@ class GoogleDrive:
       try:
         uploaded_file = self.__service.files().create(body=body, media_body=media_body, fields='id', supportsTeamDrives=True).execute()
         file_id = uploaded_file.get('id')
-        return Messages.UPLOADED_SUCCESSFULLY.format(filename, self.__G_DRIVE_BASE_DOWNLOAD_URL(file_id), filesize)
+        url_long = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file_id)
+        return Messages.UPLOADED_SUCCESSFULLY.format(filename, shorten(url_long), filesize)
       except HttpError as err:
         if err.resp.get('content-type', '').startswith('application/json'):
           reason = json.loads(err.content).get('error').get('errors')[0].get('reason')

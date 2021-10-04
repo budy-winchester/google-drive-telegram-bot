@@ -26,18 +26,9 @@ logging.getLogger('oauth2client.client').setLevel(logging.ERROR)
 
 
 class GoogleDrive:
-  def shorten(url_long):
-    try:
-      URL = "http://ouo.io/api/ARlk1o6H?s"
-      url = URL + "=" \
-          + urllib.parse.urlencode({"url": url_long})
-      res = requests.get(url).text
-    except Exception as e:
-      raise
-      
   def __init__(self, user_id):
     self.__G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
-    self.__G_DRIVE_BASE_DOWNLOAD_URL = "https://drive.google.com/uc?id={}&export=download"
+    self.__G_DRIVE_BASE_DOWNLOAD_URL = "http://ouo.io/api/ARlk1o6H?s=https://drive.google.com/uc?id={}&export=download"
     self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL = "https://drive.google.com/drive/folders/{}"
     self.__service = self.authorize(gDriveDB.search(user_id))
     self.__parent_id = idsDB.search_parent(user_id)
@@ -172,7 +163,8 @@ class GoogleDrive:
         uploaded_file = self.__service.files().create(body=body, media_body=media_body, fields='id', supportsTeamDrives=True).execute()
         file_id = uploaded_file.get('id')
         url_long = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file_id)
-        return Messages.UPLOADED_SUCCESSFULLY.format(filename, shorten(url_long), filesize)
+        res = requests.get(url_long).text
+        return Messages.UPLOADED_SUCCESSFULLY.format(filename, res, filesize)
       except HttpError as err:
         if err.resp.get('content-type', '').startswith('application/json'):
           reason = json.loads(err.content).get('error').get('errors')[0].get('reason')
